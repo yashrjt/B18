@@ -1,0 +1,259 @@
+create table employee(EmpId int,EmpName varchar(20),EmpCity  varchar(20));
+
+select * from employee;
+
+alter table employee add EmpState varchar(20);
+
+alter table employee add EmpPay int;
+alter table employee drop column EmpState;
+
+
+alter table employee modify EmpCity varchar(30);
+
+
+alter table employee rename column EmpCity to EmpLocation;
+
+
+--drop  it drops the entire table
+
+drop table employee;
+
+--truncate-- only the records inside the table will be deleted.But the table structure still exists
+
+truncate table employee;
+
+--insert
+
+insert into employee(EmpId,EmpName,EmpCity) values(1,'John','Chicago');
+insert into employee(EmpId,EmpName,EmpCity) values(2,'Andrew','Orlando');
+
+insert into employee(EmpId,EmpName,EmpCity) values(3,'David','San Jose');
+insert into employee(EmpId,EmpName,EmpCity) values(4,'George','Atlanta');
+insert into employee(EmpId,EmpName,EmpCity) values(5,'Gary','Houston');
+
+insert into employee(EmpId,EmpName,EmpCity) values(6,'Zhang','Houston');
+
+insert into employee(EmpId,EmpName) values(7,'Kenny');
+--update
+
+update employee set EmpPay=6000 where EmpId=1;
+
+update employee set EmpPay=7500 where EmpId=2;
+update employee set EmpPay=8000 where EmpId=3;
+update employee set EmpPay=8300 where EmpId=4;
+
+update employee set EmpPay=8900 where EmpId=5;
+update employee set EmpPay=6300 where EmpId=6;
+--delete
+
+delete from employee where EmpName='George';
+
+
+--get all the employees who live in chicago
+select * from Employee where Empcity='Chicago';
+
+--get all the employees who live in chicago or san jose
+select * from Employee where Empcity='Chicago' or EmpCity='San Jose';
+select * from Employee where Empcity in('Chicago','San Jose');
+
+--get all the employees who live in chicago and earn pay 6000
+select * from Employee where EmpCity='Chicago' and EmpPay=6100;
+
+
+--get all the employees who deos not live in chicago or san jose
+
+select * from Employee where Empcity not in('Chicago','San Jose','Orlando');
+
+
+--get the employees who earn greater than 6000
+select * from Employee where EmpPay>6000;
+
+
+--get the employees who earn less than 7000
+select * from Employee where EmpPay<7000;
+
+
+select * from Employee where EmpPay!=7500;
+
+
+
+--get the employees who earn in the range 7000 and 8000
+select * from Employee where EmpPay between 7000 and 8000;
+
+
+--get the employees whose pay is null
+select * from Employee where EmpPay is null;
+
+--get the employees whose pay is not null
+select * from Employee where EmpPay is not null;
+
+
+--Aggregate functions
+
+
+--get the total pay from the employee table
+
+select sum(EmpPay)  as Total_pay from Employee ;
+
+
+
+
+
+--get the min pay from the employee table
+
+select min(EmpPay)  as Min_pay from Employee ;
+
+
+
+--get the max pay from the employee table
+
+select max(EmpPay)  as Max_pay from Employee ;
+
+--get the avg pay from the employee table
+
+select avg(EmpPay)  as Avg_pay from Employee ;
+
+
+--get the total number of records in the employee table
+select count(*)  from Employee;
+
+--get the total number od unique cities
+select count(distinct EmpCity)  from Employee;
+
+--get the unique list of emp cities
+select distinct EmpCity from Employee;
+
+
+--sort
+
+--sort the employee table according to emppay 
+select * from employee order by emppay desc;
+
+
+
+--nested queries
+
+--get the detail of the employee who has the min pay
+
+select * from employee where emppay=(select min(EmpPay) from Employee );
+
+--get the total pay from the employee table where empid-1,2
+select sum(EmpPay)  as Total_pay from (select * from Employee where EmpId in(1,2)) ;
+
+
+---group by
+
+
+--get the number of employees who live in each city
+
+select EmpCity,count(*) as Emp_count from employee group by empcity;
+
+
+--get the city names where more than one employee lives
+
+select EmpCity,count(*) as Emp_count from employee group by empcity having count(*)>1;
+
+
+
+--constraints
+
+
+create table SalesPeople(snum number,sname varchar(20),city varchar(20),comm number,constraint snum_primary primary key(snum));
+
+insert into SalesPeople(snum,sname,city,comm)values (1001,'Peel','London',12);
+insert into SalesPeople(snum,sname,city,comm)values (1002,'Serres','San Jose',13);
+insert into SalesPeople(snum,sname,city,comm)values (1004,'Motika','London',11);
+insert into SalesPeople(snum,sname,city,comm)values (1007,'Rafkinl','Barcelona',15);
+insert into SalesPeople(snum,sname,city,comm)values (1003,'Axelrod','New York',1);
+
+
+
+
+
+create table cust (cnum int,cname varchar(10),city varchar(10),rating int,snum int,constraint cnum_primary primary key(cnum),
+                                                                                constraint snum_foreign foreign key(snum) references Salespeople(snum));
+
+insert into cust(cnum,cname,city,rating,snum) VALUES (2001,'Hoffman','London',100,1001);
+insert into cust(cnum,cname,city,rating,snum) VALUES (2002,'Giovanne','Rome',200,1003);
+insert into cust(cnum,cname,city,rating,snum) VALUES (2003,'Liu','San Jose',300,1002);
+insert into cust(cnum,cname,city,rating,snum) VALUES (2004,'Grass','Berlin',100,1002);
+insert into cust(cnum,cname,city,rating,snum) VALUES (2005,'Clemens','London',300,1007);
+insert into cust(cnum,cname,city,rating,snum) VALUES (2006,'Pereira','London',100,1004);
+
+
+
+create table Orders(onum number,amt number,odate date,cnum number,snum number,constraint onum_primary primary key(onum),
+                     constraint cnum_order_foreign foreign key(cnum) references cust(cnum) ,  constraint snum_order_foreign foreign key(snum) references Salespeople(snum)                      );
+
+insert into orders(onum,amt,odate,cnum,snum) values(3001,18.69,'03-OCT-94',2003,1007);
+
+insert into orders(onum,amt,odate,cnum,snum) values(3003,767.19,'03/oct/94',2001,1001);
+
+insert into orders(onum,amt,odate,cnum,snum) values(3002,1900.10,'03/October/1994',2006,1004);
+
+insert into orders(onum,amt,odate,cnum,snum) values(3005 , 5160.45 ,' 03-OCT-94'    ,   2003   ,   1002);
+
+insert into orders(onum,amt,odate,cnum,snum) values(3006  , 1098.16 ,'04-OCT-94  ',     2001 ,     1007);
+
+insert into orders(onum,amt,odate,cnum,snum) values(3009 ,   1713.23 ,' 04-OCT-94   ',   2002     , 1003);
+insert into orders(onum,amt,odate,cnum,snum) values(3007     ,   75.75   ,      '05-OCT-94',      2004   ,   1002);
+
+insert into orders(onum,amt,odate,cnum,snum) values(3008    ,4723.00, '05-OCT-94 '    , 2006  ,     1001);
+
+insert into orders(onum,amt,odate,cnum,snum) values(3010  ,  1309.95 ,' 06-OCT-94',       2004    ,   1002);
+
+insert into orders(onum,amt,odate,cnum,snum) values(3011 ,   9891.88 , '06-OCT-94  '   , 2006   ,   1001);
+
+
+
+select * from Salespeople;
+
+select * from cust;
+
+
+select * from orders;
+
+
+
+
+----get the list of all the cities from salespeople and cust(without duplicates)
+
+select city from Salespeople union select city from cust;
+
+----get the list of all the cities from salespeople and cust (with duplicates)
+select city from Salespeople union all select city from cust;
+
+
+---get the max amount of order processed by every saleperson
+
+select max(amt) as MAX_ORDER from orders;
+
+
+select snum,max(amt) as MAX_ORDER from orders group by snum;
+
+--get the salesperson snum who has more than 5000$ order as their max order
+
+select snum,max(amt) as MAX_ORDER from orders group by snum having max(amt)>5000;
+
+--how many orders were palced on every single day
+
+select odate,count(onum) as Total_orders from orders group by odate;
+
+--sort the order count  placed on every single day in descending order
+
+select odate,count(onum) as Total_orders from orders group by odate order by Total_orders desc;
+
+--Select the dates in which totally more than 3 orders were placed 
+
+Select odate,count(onum) from orders group by odate having count(onum)>3;
+
+--Select the dates in which 2 or more  total orders were placed and sort them to order count ascending
+select odate,count(onum) from orders group by odate having count(onum) >= 2 order by count(onum);
+
+--which day has the highest order amount placed?
+
+select max(amt) from orders;
+select odate from orders where amt=(select max(amt) from orders);
+
+--which day has the most number of orders placed?
+select count(onum),odate from orders group by odate order by count(onum) desc;

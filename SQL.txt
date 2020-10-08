@@ -1,0 +1,80 @@
+Oracle 12c Installation
+
+
+Mac—Virtual machine
+
+
+Local machine
+Server
+
+
+AWS account—
+
+
+	
+Sql developer install
+
+
+CLI
+
+Sql developer—GUI
+
+Tables
+
+Rows-records
+Column-fields
+
+
+DDL COMMANDS—DATA DEFINITION LANGUAGE
+
+
+Create
+Alter
+Drop
+Truncate
+
+DML COMMANDS—DATA MANIPULATION LANGUAGE
+
+
+Insert
+Update
+Delete 
+DQL COMMAND-DATA QUERY LANGUAGE
+
+
+Select
+
+
+
+Operators
+
+ >,<,>=,<=,!=,=
+
+Null
+Not null
+And
+Or
+In
+Not in
+
+
+
+
+--Aggregate functions
+Min,max,avg,sum,count
+
+
+
+Group By Having
+
+Union vs union all
+
+--constraints
+
+not null
+Unique
+Primary key—not null+unique
+Foreign key
+
+
+
