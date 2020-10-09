@@ -257,3 +257,32 @@ select odate from orders where amt=(select max(amt) from orders);
 
 --which day has the most number of orders placed?
 select count(onum),odate from orders group by odate order by count(onum) desc;
+
+
+--left outer join
+select c.cnum,c.cname,s.snum,s.sname from salespeople s  left outer  join cust c  on s.snum=c.snum;
+
+
+
+--right outer join
+
+select c.cnum,c.cname,s.snum,s.sname from salespeople s  right outer  join cust c  on s.snum=c.snum;
+
+
+--full outer join
+select c.cnum,c.cname,s.snum,s.sname from salespeople s  full outer  join cust c  on s.snum=c.snum;
+
+
+---get the customer name for every order
+
+select o.onum ,c.cname from cust c join orders o on o.cnum=c.cnum;
+
+
+
+---get the customer,salespeople name for every order
+
+select o.onum ,c.cname ,s.sname from cust c join orders o  on o.cnum=c.cnum  join salespeople s on o.snum=s.snum;
+
+
+
+
