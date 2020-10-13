@@ -1,0 +1,87 @@
+1. Normalization
+--method to organize the data in the databse
+
+
+INF,2NF
+
+
+cust_id cust_name cust_email            satff_id staff_name product _id product_name                    product_unitprice 
+
+1           john    john@gmail.com          3      HELEN      1,2,3          laptop,mobile,Hard disk             1000,500,200
+
+
+
+1NF--data in a cell needs to be atomic
+
+cust_id cust_name cust_email            staff_id staff_name product _id product_name     product_unitprice 
+
+1           john    john@gmail.com          3      HELEN      1         laptop            1000
+
+1           john    john@gmail.com          3      HELEN      2         mobile            500
+
+1           john    john@gmail.com          3      HELEN      3         Hard disk          200
+
+
+2NF--no partial dependencies allowed
+
+cust table
+
+cust_id cust_name cust_email            
+
+1           john    john@gmail.com        
+
+1           john    john@gmail.com        
+
+1           john    john@gmail.com    
+
+
+
+
+staff
+
+
+         staff_id staff_name
+
+                3      HELEN     
+                3      HELEN      
+
+
+products
+
+product _id product_name     product_unitprice 
+ 1         laptop            1000
+  2         mobile            500
+  3         Hard disk          200
+
+
+  sales order
+
+  ORDER_ID,ORDER_DATE,ORDER_STATUS,ORDER_TOTAL,CUSTOMER_ID,STAFF_ID,
+  101                                                                   
+                                                                   
+
+
+  order_details
+
+composite key(a combination of columns-primary key)
+
+ order_id  product_id   quantity
+    101         3           1
+    101         4           2
+    101         5           4
+
+
+-Schema
+collection of database objects
+
+tables
+views
+index
+triggers
+functions
+procedures
+sequence
+
+
+
+

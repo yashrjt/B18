@@ -284,5 +284,20 @@ select o.onum ,c.cname from cust c join orders o on o.cnum=c.cnum;
 select o.onum ,c.cname ,s.sname from cust c join orders o  on o.cnum=c.cnum  join salespeople s on o.snum=s.snum;
 
 
+--sequence
 
 
+create table trainer(trainer_id int,trainer_name varchar(20));
+
+
+insert into trainer(trainer_id,trainer_name) values(trainer_sequence.nextval,'Russell');
+
+insert into trainer(trainer_id,trainer_name) values(trainer_sequence.nextval,'Russell');
+
+
+insert into trainer(trainer_id,trainer_name) values(trainer_sequence.nextval,'Russell');
+
+create sequence trainer_sequence start with 1001 increment by 2 minvalue 1001 maxvalue 10000000;
+
+
+select * from trainer;

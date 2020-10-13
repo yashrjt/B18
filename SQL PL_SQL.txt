@@ -1,0 +1,117 @@
+PL-sql
+
+procedural language-sql
+
+code that resides inside database
+
+
+anonymous block
+
+Function
+Procedure
+Trigger
+Cursor
+
+
+Java
+
+--datatypes
+
+
+record,rowtype
+
+varchar
+int
+data
+
+type trainer_record is record(trainer_name varchar(20),trainer_dept varchar(20));
+
+Holland_record trainer_record;
+
+
+int ,string,flaot,double,string,boolean
+
+int a;
+String name;
+
+
+customdatatype (xyz)
+
+xyz newvar;
+
+
+-loops
+
+
+
+
+
+
+declare
+emp_name varchar(20):='King';
+emp_id int:=101;
+cust_rec cust%rowtype;
+
+type trainer_record is record(trainer_name varchar(20),trainer_dept varchar(20));
+
+Holland_record trainer_record;
+
+begin
+
+
+Holland_record.trainer_name:='Holland';
+Holland_record.trainer_dept:='Java';
+
+cust_rec.cname:='Davidson';
+cust_rec.cnum:=2007;
+dbms_output.put_line(emp_name);
+dbms_output.put_line(cust_rec.cname || cust_rec.cnum);
+
+dbms_output.put_line(Holland_record.trainer_name || Holland_record.trainer_dept);
+end;
+
+
+
+---
+
+
+declare
+
+emp_salgrade varchar(2):='A';
+salary int;
+begin
+case
+    when emp_salgrade ='A' then
+    salary:=14000;
+    
+    when emp_salgrade ='B' then
+     salary:=12000;
+    
+    
+    when emp_salgrade ='C' then
+     salary:=10000;
+    
+end case;
+dbms_output.put_line(salary);
+end;
+
+
+declare
+
+salary int:=9000;
+begin
+if salary>=10000 then 
+dbms_output.put_line('Grade A');
+else 
+dbms_output.put_line('some other Grade');
+end if;
+end;
+
+
+
+declare
+begin
+for i in 0..5 loop
+dbms_output.put_line(i);
+end loop;
+end;
