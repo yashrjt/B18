@@ -1,0 +1,229 @@
+declare
+emp_name varchar(20):='King';
+emp_id int:=101;
+cust_rec cust%rowtype;
+
+type trainer_record is record(trainer_name varchar(20),trainer_dept varchar(20));
+
+Holland_record trainer_record;
+
+begin
+
+
+Holland_record.trainer_name:='Holland';
+Holland_record.trainer_dept:='Java';
+
+cust_rec.cname:='Davidson';
+cust_rec.cnum:=2007;
+dbms_output.put_line(emp_name);
+dbms_output.put_line(cust_rec.cname || cust_rec.cnum);
+
+dbms_output.put_line(Holland_record.trainer_name || Holland_record.trainer_dept);
+end;
+
+
+
+---
+
+
+declare
+
+emp_salgrade varchar(2):='A';
+salary int;
+begin
+case
+    when emp_salgrade ='A' then
+    salary:=14000;
+    
+    when emp_salgrade ='B' then
+     salary:=12000;
+    
+    
+    when emp_salgrade ='C' then
+     salary:=10000;
+    
+end case;
+dbms_output.put_line(salary);
+end;
+
+
+declare
+
+salary int:=9000;
+begin
+if salary>=10000 then 
+dbms_output.put_line('Grade A');
+else 
+dbms_output.put_line('some other Grade');
+end if;
+end;
+
+
+
+declare
+begin
+for i in 0..5 loop
+dbms_output.put_line(i);
+end loop;
+end;
+
+
+select * from employee;
+
+---exception
+
+declare
+myvar int;
+begin
+myvar:=8768712537615746517461763451764176576665768767682341231231;
+end;
+
+
+
+declare
+myvar int;
+number_exception exception;
+pragma exception_init(number_exception,-6502);
+
+begin
+myvar:=8768712537615746517461763451764176576665768767682341231231;
+
+exception
+when number_exception then
+dbms_output.put_line('Very lasrge number assigned');
+when others then
+dbms_output.put_line('some other error occured');
+end;
+
+
+
+select * from employee;
+
+
+
+
+declare
+e_name varchar(20);
+
+begin
+select empname into  e_name from employee where empid=10;
+dbms_output.put_line(e_name);
+exception
+when too_many_rows then
+dbms_output.put_line('trying to assign more data');
+when others then
+dbms_output.put_line('some other error');
+end;
+
+
+--Functions
+
+create or replace function get_emppay_grade(emppay int) return varchar as
+pay_grade varchar(2);
+
+begin
+if emppay>=8000 then
+pay_grade:='A';
+else if emppay<7000 then
+pay_grade:='B';
+else 
+pay_grade:='C';
+end if;
+end if;
+return pay_grade;
+end;
+
+
+select empname,get_emppay_grade(emppay) as emp_grade from employee where empid=1;
+
+
+
+select * from employee;
+
+create or replace procedure update_employee as
+emp_id_number employee.empid%type :=2;
+begin
+update employee set empcity='Dallas' where empid=emp_id_number;
+end;
+
+
+
+exec update_employee;
+
+--in parameter
+
+create or replace procedure update_employee_city(p_emp_id in employee.empid%type) is
+
+begin
+update employee set empcity='San Antonio' where empid=p_emp_id;
+end;
+
+
+
+declare
+p_emp_id employee.empid%type:=3;
+begin
+update_employee_city(p_emp_id);
+end;
+
+
+--in & out parameter
+
+create or replace procedure update_employee_city_two(p_emp_id in employee.empid%type, p_emp_pay out  employee.emppay%type) is
+
+begin
+update employee set empcity='Chicago' where empid=p_emp_id returning emppay into  p_emp_pay  ;
+
+exception
+when others then
+dbms_output.put_line('some other error');
+end;
+
+
+
+declare
+p_emp_id employee.empid%type:=4;
+p_emp_pay employee.emppay%type;
+begin
+update_employee_city_two(p_emp_id,p_emp_pay);
+dbms_output.put_line(p_emp_pay);
+end;
+
+
+
+
+
+
+
+declare
+p_empname varchar(20);
+
+cursor cur_emp is
+select empname from employee;
+begin
+open cur_emp;
+loop
+fetch cur_emp into p_empname;
+
+exit when cur_emp%notfound;
+dbms_output.put_line(p_empname);
+end loop;
+
+close cur_emp;
+end;
+
+
+
+
+
+--cursor
+declare
+p_empname varchar(20);
+begin
+select empname into p_empname from employee;
+
+if sql%found then
+dbms_output.put_line(sql%rowcount);
+end if;
+end;
+

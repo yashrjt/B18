@@ -7,11 +7,21 @@ code that resides inside database
 
 anonymous block
 
-Function
-Procedure
-Trigger
-Cursor
+Function--returns data mandatorily, u can call the function from sql statements
+Procedure--may or may not return data,it does something to the table
+Cursor--pointer to the memory area implicit & explicit
+--lifecycle of Cursor  open ,fetch ,close
 
+sql%found
+sql%notfound
+sql%rowcount
+Trigger--
+
+dml,ddl commands
+
+system events--
+log in/log off
+server error
 
 Java
 
@@ -19,6 +29,8 @@ Java
 
 
 record,rowtype
+
+%type--used to copy the datatype from a tables field
 
 varchar
 int
@@ -115,3 +127,28 @@ for i in 0..5 loop
 dbms_output.put_line(i);
 end loop;
 end;
+
+
+--triggers
+create or replace trigger emp_before_trigger
+before update on employee
+begin
+dbms_output.put_line('emp table before update');
+end;
+
+
+
+
+create or replace trigger emp_after_trigger
+after update on employee
+begin
+dbms_output.put_line('emp table after update');
+end;
+
+
+update employee set empcity='Houston' where empid=1;
+
+
+alter trigger  emp_before_trigger disable;
+
+drop trigger emp_before_trigger;
