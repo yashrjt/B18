@@ -1,0 +1,15 @@
+
+/* CSS flex ,css grid */
+nav{
+    
+    background-color: bisque;
+}
+ul{
+    height:75px;
+    display: flex;
+     justify-content: space-between; 
+     align-items: center; 
+}
+li{
+    list-style: none;
+}
