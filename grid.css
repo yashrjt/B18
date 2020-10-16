@@ -1,0 +1,30 @@
+.container{
+    height: 1000px;
+    width:1000px;
+    border:solid 1px black;
+    display: grid;
+    grid-template-rows: 100px 100px 100px;
+    grid-template-columns: 100px 100px 100px;
+    grid-gap:20px;
+
+    /* aligns the grid horizontally and vertically */
+    /* justify-content: center;
+    align-content: end; */
+
+
+    /* justify-items: end;
+    align-items: center; */
+}
+
+.grid-item{
+    border:solid 1px black;
+}
+
+
+.grid1{
+    grid-column: 1/span 2;
+}
+
+.grid3{
+    grid-row: 2/span 2;
+}
