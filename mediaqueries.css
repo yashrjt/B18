@@ -1,0 +1,44 @@
+@media only screen and (min-width:1400px){
+    *{
+        color:red;
+    }
+    .grid-container{
+        display: grid;
+        grid-template-columns: repeat(3,500px);
+        grid-template-rows: repeat(4,500px);
+        border:solid 1px black;
+    }
+    
+  
+}
+
+
+@media only screen and (min-width:1200px) and (max-width:1399px){
+    *{
+        color:blue;
+    }
+    .grid-container{
+        display: grid;
+        grid-template-columns: repeat(2,500px);
+        grid-template-rows: repeat(5,500px);
+        border:solid 1px black;
+    }
+   
+}
+
+
+
+@media only screen and (min-width:400px) and (max-width:1199px){
+    .grid-container{
+        display: grid;
+        grid-template-columns: repeat(1,500px);
+        grid-template-rows: repeat(10,500px);
+        border:solid 1px black;
+    }
+   
+}
+
+.grid-item{
+    border:solid 1px black;
+}
+
