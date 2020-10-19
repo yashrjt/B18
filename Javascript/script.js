@@ -176,11 +176,11 @@ console.log('i am called after 3 seconds')
 
 console.log(' i am present after settimeout');
 
-// let promise=new Promise((resolved,rejected)=>{
-//     setTimeout(()=>{
-//         resolved('call success')
-//     },5000);
-// })
+let promise=new Promise((resolved,rejected)=>{
+    setTimeout(()=>{
+        resolved('call success')
+    },5000);
+})
 
 
 promise
@@ -190,3 +190,25 @@ console.log("response", response)
 .catch((err)=>{
 console.log("err", err)
 })
+
+
+//DOM(Document object model) and events
+
+let pArray=document.getElementsByClassName('para');
+console.log("pArray", pArray)
+
+let p=document.getElementById('idpara1');
+console.log("p", p)
+
+let para=document.getElementsByTagName('p');
+console.log("para", para)
+
+//new version
+let pArrayNew=document.querySelectorAll('.para');
+console.log("p", pArrayNew)
+
+let pNew=document.querySelector('#idpara1');
+console.log("p", pNew)
+
+let paraNew=document.querySelector('p');
+console.log("para", paraNew)
