@@ -1,6 +1,4 @@
-// document.querySelector('.button').addEventListener('click',function(){
-//     alert('you clicked the button')
-// })
+
 
 //Interpreted language
 //Nodejs-environment to run javascript code on the server
@@ -107,6 +105,17 @@ var HelenSalary=getSalary();
 
 console.log(HelenSalary(2000));
 
+//this keyword
+
+
+console.log(this);
+
+
+
+
+
+
+
 //es6 (ecmascript) features
 
 //let creates a block level scope
@@ -212,3 +221,39 @@ console.log("p", pNew)
 
 let paraNew=document.querySelector('p');
 console.log("para", paraNew)
+
+
+// 1.Access th button element from DOM
+// 2.Add a click eventlistener to the button 
+// 3.When the button is clicked show an alert box
+
+//types of events--mouse events,keyboard events,window events,network,form events etc.,
+document.querySelector('.button').addEventListener('click',function(){
+    alert('you clicked the button')
+})
+
+
+//event stop propogation
+
+document.querySelector('.list-item-3').addEventListener('click',function(e){
+    e.stopPropagation();
+ })
+
+
+//event delegation
+//event bubbling -- event in child is bubbled to parent 
+//eg
+document.querySelector('.list-item').addEventListener('click',(e)=>{
+    console.log(e.target.innerHTML);
+})
+
+//event capturing -- event in parent is captured in child
+
+
+
+//preventing default action
+document.querySelector('.google').addEventListener('click',(e)=>{
+   e.preventDefault();
+})
+
+
