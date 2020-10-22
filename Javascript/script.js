@@ -228,9 +228,9 @@ console.log("para", paraNew)
 // 3.When the button is clicked show an alert box
 
 //types of events--mouse events,keyboard events,window events,network,form events etc.,
-document.querySelector('.button').addEventListener('click',function(){
-    alert('you clicked the button')
-})
+// document.querySelector('.button').addEventListener('click',function(){
+//     alert('you clicked the button')
+// })
 
 
 //event stop propogation
@@ -254,6 +254,14 @@ document.querySelector('.list-item').addEventListener('click',(e)=>{
 //preventing default action
 document.querySelector('.google').addEventListener('click',(e)=>{
    e.preventDefault();
+})
+
+document.querySelector('.button').addEventListener('click',function(){
+ let  para=document.createElement('p');
+ para.innerHTML='I am created through Javascript';
+ para.setAttribute('id','newPara');
+ document.body.appendChild(para);
+ console.log("para", para.innerHTML);
 })
 
 
